@@ -1,5 +1,7 @@
-@use './home.scss';
+@use '../pages/home.scss';
 @use './index.scss';
 @use '../components/header/header.scss';
 @use '../components//footer/footer.scss';
-@use '../components/bannerHome/bannerHome.scss'
+@use '../components/bannerHome/bannerHome.scss';
+@use '../components/features/features.scss';
+@use '../pages/Sign_In.scss'
