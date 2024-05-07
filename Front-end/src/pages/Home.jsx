@@ -1,10 +1,14 @@
 import React from 'react';
 import BannerHome from '../components/bannerHome/BannerHome';
+import Features from '../components/features/Features';
 
 const Home = () => {
     return (
         <div>
-            <BannerHome/>
+            <div>
+                <BannerHome/>
+                <Features/>
+            </div>
         </div>
     );
 };
