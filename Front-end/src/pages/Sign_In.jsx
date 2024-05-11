@@ -1,7 +1,7 @@
 import React, {useState,} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
-import tokenSlice from '../tokenSlice';
+import {setToken} from '../tokenSlice';
 
 
 const Sign_In = () => {
@@ -11,6 +11,7 @@ const Sign_In = () => {
     });
 
 const dispatch = useDispatch();
+const token = useSelector(state => state.token);
 
 const handleChange = (event => {
     setFormData({...formData, [event.target.name]: event.target.value});
