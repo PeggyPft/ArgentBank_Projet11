@@ -3,13 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Sign_In from './pages/Sign_In';
 import User from './pages/User';
-import Header from './components/header/Header'
 import Footer from './components/footer/Footer';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header/>
+    <BrowserRouter>      
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/sign-in" element={<Sign_In/>}/>
