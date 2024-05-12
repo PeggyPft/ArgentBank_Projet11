@@ -2,26 +2,32 @@ import React, {useState,} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import {setToken} from '../tokenSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const Sign_In = () => {
     const [formData, setFormData] = useState({
-        userName: '',       
+        email: '',       
         password: '',
     });
 
 const dispatch = useDispatch();
-const token = useSelector(state => state.token);
+const navigate = useNavigate();
 
-const handleChange = (event => {
+const handleChange = (event) => {
     setFormData({...formData, [event.target.name]: event.target.value});
-});
+};
 
 const handleSubmit = async (event) => {
+    console.log(formData);
     event.preventDefault();
     try {
-        const response = await axios.post('http://localhost:3001/api/v1/user/signup', formData);
+        const response = await axios.post('http://localhost:3001/api/v1/user/login', formData);
         console.log(response.data);
+        if (response.status === 200) {
+            dispatch(setToken(response.data.token));
+            navigate('/profile');
+        }
     } catch (error) {
         console.error('Erreur lors de la soumission du formulaire:', error);
     }
@@ -34,8 +40,8 @@ const handleSubmit = async (event) => {
                 <h1>Sign In</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="input-wrapper">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" id="username" name="userName" value={formData.userName} onChange={handleChange}/>
+                        <label htmlFor="email">Username</label>
+                        <input type="text" id="email" name="email" value={formData.email} onChange={handleChange}/>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
