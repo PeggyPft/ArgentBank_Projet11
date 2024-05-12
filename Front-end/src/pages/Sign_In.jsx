@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
 import {setToken} from '../tokenSlice';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/header/Header';
 
 
 const Sign_In = () => {
@@ -35,6 +36,7 @@ const handleSubmit = async (event) => {
 
     return (
         <main className="main bg-dark">
+            <Header/>
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
