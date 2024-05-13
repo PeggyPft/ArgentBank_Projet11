@@ -56,16 +56,18 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container_viewTransactions {  
     .account {
-      flex-direction: row;
+        flex-direction: row;
+      
     
-  
-    .account-content-wrapper.cta {
-      flex: 0;
-    }
-  
-    .transaction-button {
-      width: 200px;
+      .account-content-wrapper.cta {
+        flex: 0;
+      }
+    
+      .transaction-button {
+        width: 200px;
+      }
     }
   }
 }
