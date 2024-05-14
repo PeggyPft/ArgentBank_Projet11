@@ -1,7 +1,7 @@
 import React, {useState,} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
-import {setToken} from '../tokenSlice';
+import { setToken } from '../Slices/tokenSlice';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
 
