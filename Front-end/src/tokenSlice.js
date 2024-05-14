@@ -14,8 +14,11 @@ const tokenSlice = createSlice({
         clearToken(state) {
             state.token= null;
         },
+        logout(state) {
+            state.token= null;
+        }
     },
 });
 
-export const {setToken, clearToken} = tokenSlice.actions;
+export const {setToken, clearToken, logout} = tokenSlice.actions;
 export default tokenSlice.reducer;
