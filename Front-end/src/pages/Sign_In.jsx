@@ -4,6 +4,7 @@ import axios from 'axios';
 import { setToken } from '../Slices/tokenSlice';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
+import { setUserInformation } from '../Slices/userInformation';
 
 
 const Sign_In = () => {
@@ -29,7 +30,7 @@ const handleSubmit = async (event) => {
             console.log('Données de la réponse:', response.data.body);
             const token = response.data.body.token;
             dispatch(setToken(token));
-
+            
             const profileResponse = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -37,10 +38,12 @@ const handleSubmit = async (event) => {
             });
 
             const {firstName} = profileResponse.data.body;
+            dispatch(setUserInformation({firstName}));
             console.log('Prénom de l\'utilisateur:', firstName);
+            
 
             const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
-                userName: 'nouveau-nom-utilisateur'
+                userName: firstName
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
