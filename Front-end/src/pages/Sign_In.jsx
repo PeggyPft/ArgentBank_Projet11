@@ -29,6 +29,24 @@ const handleSubmit = async (event) => {
             console.log('Données de la réponse:', response.data.body);
             const token = response.data.body.token;
             dispatch(setToken(token));
+
+            const profileResponse = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const {firstName} = profileResponse.data.body;
+            console.log('Prénom de l\'utilisateur:', firstName);
+
+            const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
+                userName: 'nouveau-nom-utilisateur'
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
             navigate('/profile');
         }
     } catch (error) {
