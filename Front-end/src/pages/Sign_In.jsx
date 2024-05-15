@@ -30,6 +30,8 @@ const handleSubmit = async (event) => {
             console.log('Données de la réponse:', response.data.body);
             const token = response.data.body.token;
             dispatch(setToken(token));
+            localStorage.setItem('authToken', token);
+            
             
             const profileResponse = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
                 headers: {
@@ -40,7 +42,7 @@ const handleSubmit = async (event) => {
             const {firstName} = profileResponse.data.body;
             dispatch(setUserInformation({firstName}));
             console.log('Prénom de l\'utilisateur:', firstName);
-            
+            localStorage.setItem('userFirstName', firstName);
 
             const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
                 userName: firstName
