@@ -10,11 +10,7 @@
         padding: 1rem;
       }
 
-    .feature-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 17px;
+    .feature-item {        
         flex: 1;
         padding: 2.5rem;
     }
@@ -28,7 +24,6 @@
 
   @media screen and (min-width: 768px) {
     .features {
-        display: flex;
         flex-direction: row;
   }
 }

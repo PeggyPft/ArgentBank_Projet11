@@ -10,7 +10,7 @@
     .hero-content {
         position: relative;
         top: 2rem;
-        width: 264px;
+        width: 200px;
         background: white;
         padding: 2rem;
         text-align: left;
@@ -23,7 +23,7 @@
         }
 
         .text {
-            margin-top: 14px;
+            margin-bottom: 0;
             font-size: 0.9rem;
         }          
     }
@@ -41,7 +41,7 @@
         transform: none;
         width: 300px;
         margin: 2rem;
-      }
+      
 
     .subtitle {
         font-size: 1.5rem;
@@ -51,4 +51,5 @@
         font-size: 1.2rem;
       }
     }
+  }
 }

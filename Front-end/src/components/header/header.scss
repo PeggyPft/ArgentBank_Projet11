@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
     background-color: white;
 
     .main-nav-logo {
@@ -21,15 +20,25 @@
         margin-right: 0.5rem;
         font-size: 1.1rem;
         color: #2c3e50;
+
+        i {
+          color: #2c3e50;
+        }
       }  
         
       span {
         font-weight:  bold;
+        color: #2c3e50;
+        margin-right: 15px;
 
         &:hover {
           text-decoration: underline;
         }
-      }
-    
+      }  
+}
 
+@media screen and (min-width: 768px) {
+  .main-nav {
+    padding: 5px 20px;
+  }
 }
