@@ -26,7 +26,9 @@ const handleSubmit = async (event) => {
         const response = await axios.post('http://localhost:3001/api/v1/user/login', formData);
         console.log(response.data);
         if (response.status === 200) {
-            dispatch(setToken(response.data.token));
+            console.log('Données de la réponse:', response.data.body);
+            const token = response.data.body.token;
+            dispatch(setToken(token));
             navigate('/profile');
         }
     } catch (error) {
