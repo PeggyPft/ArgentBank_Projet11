@@ -11,7 +11,7 @@ const ErrorPage = () => {
                 <p>Merci de bien vouloir vous connecter.</p>
 
                 <div className="errorLink">
-                    <Link to="/">Retourner sur la page de connexion</Link>
+                    <Link to="/sign-in">Retourner sur la page de connexion</Link>
                 </div>
             </div>        
         </div>
