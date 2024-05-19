@@ -1,13 +1,16 @@
 import React from 'react';
 import ViewTransactions from '../components/viewTransactions/ViewTransactions';
 import Header from '../components/header/Header';
+import { useSelector } from 'react-redux';
 
 const User = () => {
+    const {firstName, lastName} = useSelector((state) => state.userInformation);
+
     return (
         <main className="container_User main bg-dark">
             <Header/>
             <div className="content_HeaderUser">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back<br /> {firstName} {lastName} !</h1>
                 <button className="edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
