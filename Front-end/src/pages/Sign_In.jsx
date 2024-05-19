@@ -1,5 +1,5 @@
 import React, {useState,} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { setToken } from '../Slices/tokenSlice';
 import { useNavigate } from 'react-router-dom';
@@ -39,10 +39,10 @@ const handleSubmit = async (event) => {
                 }
             });
 
-            const {firstName} = profileResponse.data.body;
-            dispatch(setUserInformation({firstName}));
-            console.log('Prénom de l\'utilisateur:', firstName);
-            localStorage.setItem('userFirstName', firstName);
+            const {firstName, userName, lastName, email, id} = profileResponse.data.body;
+            dispatch(setUserInformation({firstName, userName, lastName, email, id}));
+            console.log('Données de l\'utilisateur:', firstName, userName, lastName, email, id);
+            localStorage.setItem('userData', JSON.stringify({firstName, userName, lastName, email, id}));
 
             const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
                 userName: firstName
