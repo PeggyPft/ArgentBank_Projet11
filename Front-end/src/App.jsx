@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Sign_In from './pages/Sign_In';
 import User from './pages/User';
 import Footer from './components/footer/Footer';
+import ErrorPage from './components/errorPage/ErrorPage';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route path="/" element={<Home/>}/>
           <Route path="/sign-in" element={<Sign_In/>}/>
           <Route path="/profile" element={<User/>}/>
+          <Route path="/error" element={<ErrorPage/>}/>
         </Routes>
       <Footer/>
       </BrowserRouter>
