@@ -14,11 +14,11 @@ const tokenSlice = createSlice({
         clearToken(state) {
             state.token= null;
         },
-        logout(state) {
+        logoutToken(state) {
             state.token= null;
         }
     },
 });
 
-export const {setToken, clearToken, logout} = tokenSlice.actions;
+export const {setToken, clearToken, logoutToken} = tokenSlice.actions;
 export default tokenSlice.reducer;
