@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ViewTransactions from '../components/viewTransactions/ViewTransactions';
 import Header from '../components/header/Header';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const User = () => {
     const {firstName, lastName} = useSelector((state) => state.userInformation);
+    const [isLoading, setIsLoading] = useState(true);
+    const isAuthenticated=useSelector(state => state.token.token !== null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+            if(!userData) {
+                navigate('/error');
+            } else {
+                setIsLoading(false);
+            }
+    }, [isAuthenticated, navigate]);
+
+    if(isLoading) {
+        return <div>Loading... </div>;
+    }
 
     return (
         <main className="container_User main bg-dark">
