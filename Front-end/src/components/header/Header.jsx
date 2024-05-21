@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import logoBanner from '../../assets/img/argentBankLogo.png';
 import {Link, useLocation} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {clearToken, logout} from '../../Slices/tokenSlice';
+import {clearToken, logoutToken, setToken} from '../../Slices/tokenSlice';
 import { clearUserInformation, setUserInformation } from '../../Slices/userInformation';
 
 
@@ -14,8 +14,17 @@ const Header = () => {
     
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem('userData'));
+        const authToken = localStorage.getItem('authToken');
+
         if(userData) {
             dispatch(setUserInformation(userData));
+        }
+
+        if (authToken) {
+            dispatch(setToken(authToken));
+
+            console.log("userData:", userData);
+            console.log("authToken:", authToken);
         }
     }, [dispatch]);
 
@@ -23,7 +32,7 @@ const Header = () => {
 
     const handleSignOut = () => {
         localStorage.clear();
-        dispatch(logout());
+        dispatch(logoutToken());
         dispatch(clearToken());
         dispatch(clearUserInformation());
     }
