@@ -1,4 +1,4 @@
-import React, {useState,} from 'react';
+import React, {useEffect, useState,} from 'react';
 import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { setToken } from '../Slices/tokenSlice';
@@ -13,51 +13,79 @@ const Sign_In = () => {
         password: '',
     });
 
-const dispatch = useDispatch();
-const navigate = useNavigate();
+    const [rememberMe, setRememberMe] = useState(true);
 
-const handleChange = (event) => {
-    setFormData({...formData, [event.target.name]: event.target.value});
-};
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-const handleSubmit = async (event) => {
-    console.log(formData);
-    event.preventDefault();
-    try {
-        const response = await axios.post('http://localhost:3001/api/v1/user/login', formData);
-        console.log(response.data);
-        if (response.status === 200) {
-            console.log('Données de la réponse:', response.data.body);
-            const token = response.data.body.token;
-            dispatch(setToken(token));
-            localStorage.setItem('authToken', token);
-            
-            
-            const profileResponse = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
+    useEffect(() => {
+        const savedEmail = localStorage.getItem('savedEmail');
+        const savedPassword = localStorage.getItem('savedPassword');
+        const savedRememberMe = localStorage.getItem('rememberMe') === 'true';
+
+        if (savedEmail && savedPassword && savedRememberMe){
+            setFormData({ email: savedEmail, password: savedPassword });
+            setRememberMe(true);
+        }
+    }, []);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({...formData, [name]: value});
+    };
+
+    const handleRememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    };
+
+    const handleSubmit = async (event) => {
+        console.log(formData);
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3001/api/v1/user/login', formData);
+            console.log(response.data);
+            if (response.status === 200) {
+                console.log('Données de la réponse:', response.data.body);
+                const token = response.data.body.token;
+                dispatch(setToken(token));
+                localStorage.setItem('authToken', token);
+                
+                
+                const profileResponse = await axios.post('http://localhost:3001/api/v1/user/profile', {}, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                const {firstName, userName, lastName, email, id} = profileResponse.data.body;
+                dispatch(setUserInformation({firstName, userName, lastName, email, id}));
+                console.log('Données de l\'utilisateur:', firstName, userName, lastName, email, id);
+                localStorage.setItem('userData', JSON.stringify({firstName, userName, lastName, email, id}));
+
+                if (rememberMe) {
+                    localStorage.setItem('savedEmail', formData.email);
+                    localStorage.setItem('savedPassword', formData.password);
+                    localStorage.setItem('rememberMe', true);
+                } else {
+                    localStorage.removeItem('savedEmail');
+                    localStorage.removeItem('savedPassword');
+                    localStorage.removeItem('rememberMe');
+                }
+
+                const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
+                    userName: firstName
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
 
-            const {firstName, userName, lastName, email, id} = profileResponse.data.body;
-            dispatch(setUserInformation({firstName, userName, lastName, email, id}));
-            console.log('Données de l\'utilisateur:', firstName, userName, lastName, email, id);
-            localStorage.setItem('userData', JSON.stringify({firstName, userName, lastName, email, id}));
-
-            const updateProfileResponse = await axios.put('http://localhost:3001/api/v1/user/profile',{
-                userName: firstName
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
+                navigate('/profile');
             }
-        });
-
-            navigate('/profile');
+        } catch (error) {
+            console.error('Erreur lors de la soumission du formulaire:', error);
         }
-    } catch (error) {
-        console.error('Erreur lors de la soumission du formulaire:', error);
-    }
-};
+    };
 
     return (
         <main className="main bg-dark">
@@ -75,7 +103,7 @@ const handleSubmit = async (event) => {
                         <input type="password" id="password" name="password" value={formData.password} onChange={handleChange}/>
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" />
+                        <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleRememberMeChange} />
                         <label htmlFor="remember-me">Remember me</label>
                     </div> 
                     <button type="submit" className="sign-in-button">Sign In</button>
