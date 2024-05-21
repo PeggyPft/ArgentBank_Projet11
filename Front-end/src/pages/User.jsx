@@ -19,6 +19,10 @@ const User = () => {
             }
     }, [isAuthenticated, navigate]);
 
+    const handleEditName = () => {
+        navigate('/editUserName');
+    };
+
     if(isLoading) {
         return <div>Loading... </div>;
     }
@@ -28,7 +32,7 @@ const User = () => {
             <Header/>
             <div className="content_HeaderUser">
                 <h1>Welcome back<br /> {firstName} {lastName} !</h1>
-                <button className="edit-button">Edit Name</button>
+                <button className="edit-button" onClick={handleEditName}>Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
             <ViewTransactions
