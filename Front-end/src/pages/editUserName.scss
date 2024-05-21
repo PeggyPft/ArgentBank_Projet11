@@ -1,0 +1,49 @@
+.container_main {
+    display: flex;
+    flex-direction: column;
+
+    .title_Edit_User {
+        font-size: 1.5rem;
+    }
+
+    .container_Form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .line_Label_Input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        gap: 8px;
+    }
+
+    input {
+        width: 100px;
+        height: 17px;
+        border: solid 1px rgb(221 213 213);
+        background-color: rgb(227 227 227);
+        border-radius: 3px;
+    }
+    
+    .container_Button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 5px;
+
+        button {
+            width: 100px;
+            padding: 5px;
+            font-size: 1rem;
+            margin-top: 1rem;
+            border-color: #00bc77;
+            background-color: #00bc77;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+    }    
+}
