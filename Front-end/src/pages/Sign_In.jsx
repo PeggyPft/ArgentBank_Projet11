@@ -14,6 +14,7 @@ const Sign_In = () => {
     });
 
     const [rememberMe, setRememberMe] = useState(true);
+    const [error, setError] = useState('');
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -84,6 +85,7 @@ const Sign_In = () => {
             }
         } catch (error) {
             console.error('Erreur lors de la soumission du formulaire:', error);
+            setError('Saisie incorrecte')
         }
     };
 
@@ -107,6 +109,7 @@ const Sign_In = () => {
                         <label htmlFor="remember-me">Remember me</label>
                     </div> 
                     <button type="submit" className="sign-in-button">Sign In</button>
+                    {error && <div className="error_Message">{error}</div>}
                 </form>
         </section>
       </main>
