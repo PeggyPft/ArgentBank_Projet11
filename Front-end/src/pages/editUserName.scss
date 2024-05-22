@@ -6,6 +6,18 @@
         font-size: 1.5rem;
     }
 
+    .error {
+        font-size: 1rem;
+        color: red;
+        margin-bottom: 20px;
+    }
+
+    .success {
+        font-size: 1rem;
+        color: red;
+        margin-bottom: 20px;
+    }
+
     .container_Form {
         display: flex;
         flex-direction: column;
@@ -26,6 +38,12 @@
         border: solid 1px rgb(221 213 213);
         background-color: rgb(227 227 227);
         border-radius: 3px;
+        color: grey;
+    }
+
+    .userName_Input {
+        background-color: white;
+        color: black;
     }
     
     .container_Button{
@@ -37,7 +55,7 @@
         button {
             width: 100px;
             padding: 5px;
-            font-size: 1rem;
+            font-size: 0.8rem;
             margin-top: 1rem;
             border-color: #00bc77;
             background-color: #00bc77;

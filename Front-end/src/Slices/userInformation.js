@@ -15,11 +15,14 @@ const userInformation = createSlice({
         setUserInformation(state, action) {
             return {...state, ...action.payload};
         },
-        clearUserInformation(state){
+        clearUserInformation(state) {
             return initialState;
-        },    
+        },
+        updateUserName(state,action) {
+            state.userName = action.payload;
+        },       
     },
 });
 
-export const {setUserInformation, clearUserInformation} = userInformation.actions;
+export const {setUserInformation, clearUserInformation, updateUserName} = userInformation.actions;
 export default userInformation.reducer;
