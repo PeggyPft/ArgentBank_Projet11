@@ -43,18 +43,18 @@ const Header = () => {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div className='main-nav-item'>
-                {/* Sur la page Home */}
-                {location.pathname === "/" && !isAuthenticated && (
+                {/* Affiche toujours "Sign In" sur la page d'accueil */}
+                {location.pathname === "/" && (
                     <Link to="/sign-in" ><i className="fa fa-user-circle"> <span>Sign In</span> </i></Link>
                 )}
 
-                {/* Sur la page Sign_In */}
-                {location.pathname === "/sign-in" && (
+                {/* Affiche "Sign In" sur les autres pages, si utilisateur non connecté */}
+                {location.pathname !== "/" && !isAuthenticated && (
                     <i className="fa fa-user-circle"> <span>Sign In</span> </i>
                 )}
 
-                {/* Sur la page User */}
-                {location.pathname === "/profile" && (
+                {/* Affiche "firstName" et Sign Out si utilisateur connecté */}
+                {location.pathname !== "/" && isAuthenticated && (
                     <div>
                         <i className="fa fa-user-circle"/> <span>{firstName}</span>
                         <Link to="/" onClick={handleSignOut}><i className="fa fa-sign-out"> <span>Sign out</span> </i></Link>
