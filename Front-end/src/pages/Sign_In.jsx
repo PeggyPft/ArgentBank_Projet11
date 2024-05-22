@@ -13,7 +13,7 @@ const Sign_In = () => {
         password: '',
     });
 
-    const [rememberMe, setRememberMe] = useState(true);
+    const [rememberMe, setRememberMe] = useState(false);
     const [error, setError] = useState('');
 
     const dispatch = useDispatch();
