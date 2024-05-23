@@ -16,6 +16,7 @@ const App = () => {
           <Route path="/profile" element={<User/>}/>
           <Route path="/error" element={<ErrorPage/>}/>
           <Route path="/editUserName" element={<EditUserName/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       <Footer/>
       </BrowserRouter>
