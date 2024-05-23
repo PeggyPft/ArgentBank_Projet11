@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateUserName } from '../Slices/userInformation';
 import axios from 'axios';
+import ArrowRight from '../assets/img/arrow-right.svg';
 
 
 const EditUserName = () => {
@@ -88,6 +89,38 @@ const EditUserName = () => {
                         <button type='button' className='button' onClick={() => navigate('/profile')}>Cancel</button>
                     </div>
                 </form>
+                <div className='container_Transactions'>
+                    <div className='box_content'>
+                        <div>
+                            <p className='title_Transactions content'> Argent Checking (x3448)</p>
+                            <p className='balance content'>$48,098.43</p>
+                            <p className='available content'>Available balance</p>
+                        </div>
+                        <div className='container_img'>
+                            <img src={ArrowRight} alt="Arrow Right" className='imgArrow'/>
+                        </div>
+                    </div>
+                    <div className='box_content'>
+                        <div>
+                            <p className='title_Transactions content'> Argent Checking (x3448)</p>
+                            <p className='balance content'>$48,098.43</p>
+                            <p className='available content'>Available balance</p>
+                        </div>
+                        <div className='container_img'>
+                            <img src={ArrowRight} alt="Arrow Right" className='imgArrow'/>
+                        </div>
+                    </div>
+                    <div className='box_content'>
+                        <div>
+                            <p className='title_Transactions content'> Argent Checking (x3448)</p>
+                            <p className='balance content'>$48,098.43</p>
+                            <p className='available content'>Available balance</p>
+                        </div>
+                        <div className='container_img'>
+                            <img src={ArrowRight} alt="Arrow Right" className='imgArrow'/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
